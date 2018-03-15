@@ -14,16 +14,23 @@ namespace QPrawnUpgradeAccess.Patches
         {
             if ( __instance.GetPilotingMode() )
             {
+                var pda = PDA_Awake_Patch.Pda;
                 if ( GameInput.GetButtonDown(GameInput.Button.Slot1) ||
                      GameInput.GetButtonDown(GameInput.Button.Slot2) )
                 {
-                    __instance.upgradesInput.OpenFromExternal();
+                    if (pda != null && pda.isOpen)
+                        pda.Close();
+                    else
+                        __instance.upgradesInput.OpenFromExternal();
                 }
 
                 //Access my storage
                 if ( GameInput.GetButtonDown(GameInput.Button.AltTool) )
                 {
-                    __instance.storageContainer.Open();
+                    if (pda != null && pda.isOpen)
+                        pda.Close();
+                    else
+                        __instance.storageContainer.Open();
                 }
             }
         }
