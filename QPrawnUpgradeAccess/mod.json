@@ -1,0 +1,16 @@
+{
+  "Id": "qprawn_upgrade_access.mod",
+  "DisplayName": "QPrawnUpgradeAccess",
+  "Author": "Orbital_sFear",
+  "Version": "1.0.0",
+  "Requires": [ "0Harmony.dll" ],
+  "Enable": true,
+  "AssemblyName": "QPrawnUpgradeAccess.dll",
+  "EntryMethod": "QPrawnUpgradeAccess.QPatch.Patch",
+  "Config": {
+	"Upgrade0": "Slot1",
+	"Upgrade1": "Slot2",
+	"Storage0": "Reload",
+	"Storage1": "",
+  }
+}

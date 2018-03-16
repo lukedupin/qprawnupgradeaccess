@@ -15,23 +15,28 @@ namespace QPrawnUpgradeAccess.Patches
             if ( __instance.GetPilotingMode() )
             {
                 var pda = PDA_Awake_Patch.Pda;
-                if ( GameInput.GetButtonDown(GameInput.Button.Slot1) ||
-                     GameInput.GetButtonDown(GameInput.Button.Slot2) )
-                {
-                    if (pda != null && pda.isOpen)
-                        pda.Close();
-                    else
-                        __instance.upgradesInput.OpenFromExternal();
-                }
+
+                //Access the ugprade
+                foreach ( var button in QPatch.UpgradeButtons )
+                    if ( GameInput.GetButtonDown(button ) )
+                    {
+                        if (pda != null && pda.isOpen)
+                            pda.Close();
+                        else
+                            __instance.upgradesInput.OpenFromExternal();
+                        return;
+                    }
 
                 //Access my storage
-                if ( GameInput.GetButtonDown(GameInput.Button.AltTool) )
-                {
-                    if (pda != null && pda.isOpen)
-                        pda.Close();
-                    else
-                        __instance.storageContainer.Open();
-                }
+                foreach ( var button in QPatch.StorageButtons )
+                    if ( GameInput.GetButtonDown(button) )
+                    {
+                        if (pda != null && pda.isOpen)
+                            pda.Close();
+                        else
+                            __instance.storageContainer.Open();
+                        return;
+                    }
             }
         }
     }
